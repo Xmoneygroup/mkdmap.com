@@ -1,11 +1,10 @@
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>XKAPO | Official</title>
     <style>
-        /* RESET & BASE */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body, html { 
             width: 100%; height: 100%; 
@@ -15,7 +14,7 @@
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
         }
 
-        /* 1. INTRO LOGO (MË E VOGËL DHE SIMETRIKE) */
+        /* 1. INTRO SPLASH - 3 HERË MË E MADHE */
         #intro-splash {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-color: #000;
@@ -24,79 +23,84 @@
         }
 
         .logo-anim {
-            width: 180px; /* Madhësi e rregulluar për PC dhe Mobile */
+            width: 550px; /* Zmadhuar 3 herë */
+            max-width: 90%; 
             height: auto;
             opacity: 0;
             animation: logoFlash 2s forwards;
         }
 
         @keyframes logoFlash {
-            0% { opacity: 0; transform: scale(0.95); }
+            0% { opacity: 0; transform: scale(0.9); }
             50% { opacity: 1; transform: scale(1); }
-            100% { opacity: 0; transform: scale(1.05); }
+            100% { opacity: 0; transform: scale(1.1); }
         }
 
-        /* 2. BACKGROUND NEON GLOW (SHKËNDIJË NGA LART-MAJTAS) */
+        /* 2. NEON GLOW BACKGROUND */
         #neon-bg {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            z-index: 1; pointer-events: none;
-            opacity: 0; transition: opacity 2s ease;
+            z-index: 1; pointer-events: none; opacity: 0; transition: opacity 2s ease;
         }
-
         .neon-spark {
-            position: absolute;
-            top: -100px; left: -100px; /* Pozicioni lart majtas */
-            width: 600px; height: 600px;
-            border-radius: 50%;
-            filter: blur(150px);
+            position: absolute; top: -150px; left: -150px;
+            width: 700px; height: 700px;
+            border-radius: 50%; filter: blur(160px);
             background: rgba(0, 255, 255, 0.2);
-            animation: neonShift 10s infinite alternate ease-in-out;
+            animation: neonShift 12s infinite alternate ease-in-out;
         }
-
         @keyframes neonShift {
-            0% { background: rgba(0, 255, 255, 0.15); } /* Blue */
-            33% { background: rgba(255, 0, 255, 0.1); } /* Magenta */
-            66% { background: rgba(0, 255, 100, 0.1); } /* Greenish */
-            100% { background: rgba(255, 255, 255, 0.1); } /* White Glow */
+            0% { background: rgba(0, 255, 255, 0.2); }
+            50% { background: rgba(255, 0, 255, 0.15); }
+            100% { background: rgba(255, 255, 255, 0.1); }
         }
 
-        /* 3. HOME CONTENT LAYOUT */
+        /* 3. HOME CONTENT */
         #home-content { opacity: 0; width: 100%; height: 100%; position: relative; transition: opacity 1s; z-index: 10; }
 
-        /* HEADER CENTER TITULLI ME VIJA */
+        /* TITULLI TITANIK ME ANIMACION LUKSOZ */
         .header-center {
-            position: absolute; top: 40px; width: 100%;
+            position: absolute; top: 15%; width: 100%;
             display: flex; justify-content: center; align-items: center;
             z-index: 2000;
         }
-
-        .xkapo-title-wrap {
-            display: flex; align-items: center; gap: 20px;
-        }
-
+        .xkapo-title-wrap { display: flex; align-items: center; gap: 30px; }
+        
         .wing {
-            width: 60px; height: 1px;
+            width: 100px; height: 2px;
             background: linear-gradient(to right, transparent, #fff);
         }
         .wing.right { background: linear-gradient(to left, transparent, #fff); }
 
         .main-title {
-            color: #fff; font-size: 28px; font-weight: bold;
-            letter-spacing: 12px; text-transform: uppercase;
+            color: #fff; 
+            font-size: clamp(40px, 8vw, 80px); /* Shumë i madh, përshtatet me ekranin */
+            font-weight: 900;
+            letter-spacing: 25px; 
+            text-transform: uppercase;
+            text-shadow: 0 0 20px rgba(255,255,255,0.5);
+            animation: titleGlow 4s infinite ease-in-out;
         }
 
-        /* CONTACT BUTTON */
+        @keyframes titleGlow {
+            0%, 100% { opacity: 0.8; text-shadow: 0 0 20px rgba(255,255,255,0.3); transform: scale(1); }
+            50% { opacity: 1; text-shadow: 0 0 50px rgba(255,255,255,0.8); transform: scale(1.02); }
+        }
+
+        /* CONTACT US - DJATHTAS POSHTË */
         .contact-wrap {
-            position: absolute; top: 100px; width: 100%;
-            display: flex; justify-content: center; z-index: 2000;
+            position: absolute; 
+            bottom: 40px; 
+            right: 40px; 
+            z-index: 2000;
         }
-
         .contact-btn {
-            color: #fff; text-decoration: none; font-size: 11px; letter-spacing: 3px;
-            border: 1px solid rgba(255,255,255,0.5); padding: 10px 30px;
-            text-transform: uppercase; transition: 0.3s;
+            color: #fff; text-decoration: none; font-size: 13px; letter-spacing: 4px;
+            border: 1px solid rgba(255,255,255,0.6); padding: 12px 35px;
+            text-transform: uppercase; transition: 0.4s;
+            background: rgba(0,0,0,0.3);
+            backdrop-filter: blur(5px);
         }
-        .contact-btn:hover { background: #fff; color: #000; border-color: #fff; }
+        .contact-btn:hover { background: #fff; color: #000; border-color: #fff; box-shadow: 0 0 20px #fff; }
 
         /* SLIDER */
         .slider-container { width: 100%; height: 100%; position: relative; }
@@ -110,7 +114,7 @@
 
         .overlay {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle, transparent 20%, rgba(0,0,0,0.6) 100%);
+            background: radial-gradient(circle, transparent 10%, rgba(0,0,0,0.7) 100%);
             z-index: 15; pointer-events: none;
         }
     </style>
