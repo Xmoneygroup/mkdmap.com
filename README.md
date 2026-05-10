@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>XKAPO | Official</title>
     <style>
+        /* RESET & BASE */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body, html { 
             width: 100%; height: 100%; 
@@ -14,22 +15,20 @@
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
         }
 
-        /* 1. INTRO SPLASH - LOGOJA E ZMADHUAR 3 FISH */
+        /* 1. INTRO SPLASH (LOGOJA E MADHE) */
         #intro-splash {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-color: #000;
             display: flex; justify-content: center; align-items: center;
             z-index: 10000;
         }
-
         .logo-anim {
-            width: 850px; /* Zmadhuar për 3-fish */
+            width: 850px; 
             max-width: 95%; 
             height: auto;
             opacity: 0;
             animation: logoFlash 2s forwards;
         }
-
         @keyframes logoFlash {
             0% { opacity: 0; transform: scale(0.9); }
             50% { opacity: 1; transform: scale(1); }
@@ -57,7 +56,7 @@
         /* 3. HOME CONTENT */
         #home-content { opacity: 0; width: 100%; height: 100%; position: relative; transition: opacity 1s; z-index: 10; }
 
-        /* HEADER CENTER - LOGOJA SI TITULL (ZMADHUAR 3 FISH) */
+        /* HEADER CENTER - LOGOJA SI TITULL */
         .header-center {
             position: absolute; top: 8%; width: 100%;
             display: flex; justify-content: center; align-items: center;
@@ -72,20 +71,19 @@
         .wing.right { background: linear-gradient(to left, transparent, #fff); }
 
         .main-logo-title {
-            width: 600px; /* Zmadhuar për 3-fish si titull */
+            width: 600px; 
             max-width: 80vw;
             height: auto;
             mix-blend-mode: screen; 
             filter: brightness(1.2);
             animation: titleGlow 4s infinite ease-in-out;
         }
-
         @keyframes titleGlow {
             0%, 100% { opacity: 0.9; transform: scale(1); filter: brightness(1); }
             50% { opacity: 1; transform: scale(1.03); filter: brightness(1.4); }
         }
 
-        /* CONTACT US - DJATHTAS POSHTË */
+        /* CONTACT US - DJATHTAS POSHTË (SIÇ E DOJE) */
         .contact-wrap {
             position: absolute; bottom: 40px; right: 40px; z-index: 2000;
         }
