@@ -5,19 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>XKAPO | Authority</title>
     <style>
-        /* General Reset */
-        body, html {
+        /* MANSORY STYLE RESET */
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
             width: 100%;
             height: 100%;
             background-color: #000;
             color: #fff;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
             overflow: hidden;
         }
 
-        /* 2-Second Intro Animation */
+        /* 2-SECOND INTRO ANIMATION */
         #intro-splash {
             position: fixed;
             top: 0;
@@ -28,74 +32,87 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            z-index: 9999;
-            transition: opacity 0.5s ease;
+            z-index: 10000;
         }
 
         .logo-anim {
-            width: 250px;
+            width: 280px;
             opacity: 0;
-            transform: scale(0.8);
-            animation: splashEffect 2s forwards;
+            animation: mansoryFade 2s forwards;
         }
 
-        @keyframes splashEffect {
-            0% { opacity: 0; transform: scale(0.8); }
+        @keyframes mansoryFade {
+            0% { opacity: 0; transform: scale(0.95); }
             50% { opacity: 1; transform: scale(1); }
-            100% { opacity: 0; transform: scale(1.1); }
+            100% { opacity: 0; transform: scale(1.05); }
         }
 
-        /* Navigation */
+        /* NAVIGATION BAR (MANSORY CLONE) */
         nav {
             position: fixed;
             top: 0;
             width: 100%;
-            padding: 30px 50px;
+            padding: 25px 60px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-sizing: border-box;
-            z-index: 1000;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.7), transparent);
+            z-index: 2000;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.5), transparent);
+            text-transform: uppercase;
+            font-size: 11px;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: 300;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.6;
         }
 
         .nav-logo {
-            font-weight: bold;
-            letter-spacing: 5px;
-            font-size: 1.5rem;
+            font-size: 22px;
+            letter-spacing: 8px;
+            font-weight: 400;
         }
 
-        .contact-link {
-            text-decoration: none;
-            color: #fff;
-            border: 1px solid #fff;
-            padding: 10px 25px;
-            font-size: 0.9rem;
-            letter-spacing: 2px;
-            transition: all 0.3s ease;
+        .contact-btn {
+            border: 1px solid rgba(255,255,255,0.4);
+            padding: 8px 20px;
+            transition: 0.3s;
         }
 
-        .contact-link:hover {
+        .contact-btn:hover {
             background: #fff;
             color: #000;
+            border-color: #fff;
         }
 
-        /* Home Page Slider */
+        /* MAIN SLIDER SECTION */
         #home-content {
             opacity: 0;
-            transition: opacity 1s ease;
+            transition: opacity 1.5s ease;
+            height: 100vh;
+            width: 100%;
         }
 
         .slider-container {
             position: relative;
             width: 100%;
-            height: 100vh;
+            height: 100%;
         }
 
         .slide {
             position: absolute;
-            top: 0;
-            left: 0;
             width: 100%;
             height: 100%;
             background-size: cover;
@@ -108,16 +125,40 @@
             opacity: 1;
         }
 
-        /* Overlay for that Mansory vibe */
+        /* VIGNETTE OVERLAY */
         .overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.3);
+            background: radial-gradient(circle, transparent 20%, rgba(0,0,0,0.4) 100%);
+            z-index: 5;
             pointer-events: none;
         }
+
+        /* SLIDER INDICATORS (MANSORY STYLE) */
+        .indicators {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            z-index: 1000;
+        }
+
+        .dot {
+            width: 40px;
+            height: 2px;
+            background: rgba(255,255,255,0.3);
+            transition: 0.3s;
+        }
+
+        .dot.active {
+            background: #fff;
+        }
+
     </style>
 </head>
 <body>
@@ -128,23 +169,41 @@
 
     <div id="home-content">
         <nav>
+            <div class="nav-links">
+                <a href="#">Models</a>
+                <a href="#">Performance</a>
+                <a href="#">Carbon</a>
+            </div>
+            
             <div class="nav-logo">XKAPO</div>
-            <a href="tel:+389070878227" class="contact-link">CONTACT US</a>
+
+            <div class="nav-links">
+                <a href="tel:+389070878227" class="contact-btn">Contact Us</a>
+            </div>
         </nav>
 
         <div class="slider-container">
             <div class="overlay"></div>
+            
             <div class="slide active" style="background-image: url('img1.jpg');"></div>
             <div class="slide" style="background-image: url('img2.jpg');"></div>
             <div class="slide" style="background-image: url('img3.jpg');"></div>
             <div class="slide" style="background-image: url('img4.jpg');"></div>
             <div class="slide" style="background-image: url('img5.jpg');"></div>
+
+            <div class="indicators">
+                <div class="dot active"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
         </div>
     </div>
 
     <script>
-        // Handle Intro Animation
-        window.addEventListener('DOMContentLoaded', () => {
+        // LOGIC FOR INTRO AND HOME SHOW
+        window.addEventListener('load', () => {
             setTimeout(() => {
                 const splash = document.getElementById('intro-splash');
                 const home = document.getElementById('home-content');
@@ -153,20 +212,25 @@
                 setTimeout(() => {
                     splash.style.display = 'none';
                     home.style.opacity = '1';
-                    startImageSlider();
-                }, 500);
+                    initMansorySlider();
+                }, 800);
             }, 2000);
         });
 
-        // Handle Slide Rotation (3.5 Seconds)
-        function startImageSlider() {
+        // SLIDER LOGIC (3.5 SECONDS)
+        function initMansorySlider() {
             const slides = document.querySelectorAll('.slide');
-            let currentIndex = 0;
+            const dots = document.querySelectorAll('.dot');
+            let current = 0;
 
             setInterval(() => {
-                slides[currentIndex].classList.remove('active');
-                currentIndex = (currentIndex + 1) % slides.length;
-                slides[currentIndex].classList.add('active');
+                slides[current].classList.remove('active');
+                dots[current].classList.remove('active');
+                
+                current = (current + 1) % slides.length;
+                
+                slides[current].classList.add('active');
+                dots[current].classList.add('active');
             }, 3500);
         }
     </script>
