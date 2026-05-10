@@ -14,7 +14,7 @@
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
         }
 
-        /* 1. INTRO SPLASH - LOGOJA E MADHE */
+        /* 1. INTRO SPLASH - LOGOJA E ZMADHUAR 3 FISH */
         #intro-splash {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-color: #000;
@@ -23,8 +23,8 @@
         }
 
         .logo-anim {
-            width: 550px; 
-            max-width: 90%; 
+            width: 850px; /* Zmadhuar për 3-fish */
+            max-width: 95%; 
             height: auto;
             opacity: 0;
             animation: logoFlash 2s forwards;
@@ -57,32 +57,32 @@
         /* 3. HOME CONTENT */
         #home-content { opacity: 0; width: 100%; height: 100%; position: relative; transition: opacity 1s; z-index: 10; }
 
-        /* HEADER CENTER - LOGOJA SI TITULL (PA TË ZEZA) */
+        /* HEADER CENTER - LOGOJA SI TITULL (ZMADHUAR 3 FISH) */
         .header-center {
-            position: absolute; top: 10%; width: 100%;
+            position: absolute; top: 8%; width: 100%;
             display: flex; justify-content: center; align-items: center;
             z-index: 2000;
         }
-        .xkapo-title-wrap { display: flex; align-items: center; gap: 30px; }
+        .xkapo-title-wrap { display: flex; align-items: center; gap: 40px; }
         
         .wing {
-            width: 100px; height: 2px;
+            width: 150px; height: 2px;
             background: linear-gradient(to right, transparent, #fff);
         }
         .wing.right { background: linear-gradient(to left, transparent, #fff); }
 
-        /* KODI QË HEQ TË ZEZA NGA FOTOJA DHE E BËN TITULL */
         .main-logo-title {
-            width: 300px; /* Madhësia e logos si titull */
+            width: 600px; /* Zmadhuar për 3-fish si titull */
+            max-width: 80vw;
             height: auto;
-            mix-blend-mode: screen; /* Ky rresht zhduk prapavijën e zezë të fotos */
+            mix-blend-mode: screen; 
             filter: brightness(1.2);
             animation: titleGlow 4s infinite ease-in-out;
         }
 
         @keyframes titleGlow {
             0%, 100% { opacity: 0.9; transform: scale(1); filter: brightness(1); }
-            50% { opacity: 1; transform: scale(1.05); filter: brightness(1.5); }
+            50% { opacity: 1; transform: scale(1.03); filter: brightness(1.4); }
         }
 
         /* CONTACT US - DJATHTAS POSHTË */
