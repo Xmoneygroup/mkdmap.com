@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -26,18 +26,22 @@
         .splash-text {
             color: #ffffff;
             font-family: 'Montserrat', sans-serif;
-            font-size: 2.5rem;
-            font-weight: 900;
-            letter-spacing: 6px;
+            font-size: 2.2rem;
+            font-weight: 300; /* Shkronja më elegante dhe të bukura */
             text-transform: uppercase;
             text-align: center;
+            white-space: nowrap;
+            letter-spacing: -5px; /* Nis me shkronja të mbledhura */
             opacity: 0;
-            transform: translateY(40px);
-            animation: textIn 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+            /* Animacioni horizontal dhe shfaqja graduale */
+            animation: textSpreadIn 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
         }
 
-        @keyframes textIn {
-            to { opacity: 1; transform: translateY(0); }
+        @keyframes textSpreadIn {
+            to { 
+                opacity: 1; 
+                letter-spacing: 6px; /* Shkronjat hapen horizontalisht */
+            }
         }
 
         /* --- 2. STILI I RI UNIK I HOME PAGE --- */
@@ -176,7 +180,7 @@
             transform: scale(1.02);
         }
 
-        /* --- ANIMACIONI UNIK I PLLAKATAVE (BUSINESS CARDS) --- */
+        /* --- ANIMACIONI I PLLAKATAVE --- */
         .results-container {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
@@ -192,14 +196,12 @@
             text-align: left;
             position: relative;
             overflow: hidden;
-            /* Animacioni i lëmueshëm kur vjen ose ikën mausi */
             transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), 
                         background 0.4s ease, 
                         border-color 0.4s ease, 
                         box-shadow 0.4s ease;
         }
 
-        /* Efekti i ri unik kur i afrohesh pllakatës */
         .business-card:hover {
             transform: translateY(-8px);
             background: rgba(255, 255, 255, 0.03);
@@ -207,7 +209,6 @@
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 25px rgba(212, 175, 55, 0.05);
         }
 
-        /* Linja e artë dekorative që ndriçon vetëm në hover */
         .business-card::before {
             content: '';
             position: absolute;
@@ -239,7 +240,7 @@
             font-weight: 300;
         }
 
-        /* --- ZONA E RE: LOKACIONI ANASH TELEFONIT --- */
+        /* --- FOOTER-I I KARTELËS --- */
         .biz-footer {
             display: flex;
             justify-content: space-between;
@@ -250,6 +251,12 @@
             font-size: 0.85rem;
         }
 
+        /* Stilet e reja për vegëzat që të mos duken si linja të thjeshta tekstesh */
+        .biz-loc-link, .biz-phone-link {
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
         .biz-loc {
             color: #d4af37;
             font-weight: 600;
@@ -257,6 +264,11 @@
             align-items: center;
             gap: 5px;
             letter-spacing: 0.5px;
+        }
+        
+        .biz-loc-link:hover .biz-loc {
+            color: #ffffff;
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.6);
         }
 
         .biz-phone {
@@ -266,9 +278,15 @@
             align-items: center;
             gap: 5px;
             background: rgba(255, 255, 255, 0.04);
-            padding: 4px 12px;
+            padding: 5px 14px;
             border-radius: 30px;
             border: 1px solid rgba(255, 255, 255, 0.02);
+        }
+
+        .biz-phone-link:hover .biz-phone {
+            background: rgba(212, 175, 55, 0.15);
+            color: #ffffff;
+            border-color: #d4af37;
         }
 
         .no-results {
@@ -278,7 +296,6 @@
             grid-column: 1 / -1;
         }
 
-        /* Përshtatja inteligjente për celularë */
         @media (max-width: 480px) {
             .main-title { font-size: 2.2rem; letter-spacing: 10px; }
             .search-box { padding: 5px 5px 5px 18px; margin-bottom: 40px; }
@@ -339,7 +356,7 @@
                     <option value="ja">🌐 日本語 (JA)</option>
                     <option value="ko">🌐 한국어 (KO)</option>
                     <option value="ar">🌐 العربية (AR)</option>
-                    <option value="he">🌐 עברית (HE)</option>
+                    <option value="he">🌐 עבריtext (HE)</option>
                     <option value="hi">🌐 हिन्दी (HI)</option>
                     <option value="id">🌐 Bahasa Indonesia (ID)</option>
                     <option value="ms">🌐 Bahasa Melayu (MS)</option>
@@ -364,7 +381,7 @@
                 <button id="search-btn" onclick="searchBusinesses()">Search</button>
             </div>
 
-            <!-- ZONA E REZULTATEVE ME ANIMACION ETALON -->
+            <!-- ZONA E REZULTATEVE -->
             <div class="results-container" id="results-box">
                 <!-- Mbushet dinamikisht nga JS -->
             </div>
@@ -387,28 +404,34 @@
                 setTimeout(function() {
                     splash.style.display = "none";
                 }, 600); 
-            }, 2000);
+            }, 2500); // Pak më shumë kohë që të dallohet animacioni i bukur horizontal
         });
 
-        // DATABASE ME PËRKTHIME 
+        // DATABASE ME PËRKTHIME DHE LOKACIONET NGA GOOGLE MAPS
         const businesses = [
             {
-                phone: "+389 70 123 456",
+                phone: "+38970123456", // Numri i pastër për thirrje direkte
+                phoneDisplay: "+389 70 123 456",
+                mapUrl: "https://maps.google.com/?q=Mavrovo+Lake", // Linku i Google Maps
                 tags: "villa hotel vilë vila вила хотел",
                 en: { name: "Luxury Villa Mavrovo", location: "Mavrovo", desc: "Exclusive villa with mountain view and private pool." },
                 sq: { name: "Vila Luksoze Mavrovë", location: "Mavrovë", desc: "Vilë ekskluzive me pamje spektakolare nga mali dhe pishinë private." },
                 mk: { name: "Луксузна Вила Маврово", location: "Маврово", desc: "Ексклузивна вила со прекрасен поглед на планина и приватен базен." }
             },
             {
-                phone: "+389 71 999 888",
+                phone: "+38971999888",
+                phoneDisplay: "+389 71 999 888",
+                mapUrl: "https://maps.google.com/?q=Skopje+Center",
                 tags: "mechanik mekanik service auto авто механичар",
                 en: { name: "Skopje Auto Mechanic Pro", location: "Skopje", desc: "24/7 emergency car repair for tourists. English speaking support." },
                 sq: { name: "Mekanik Auto Pro Shkup", location: "Shkup", desc: "Riparim urgjent i makinave 24/7 për turistët dhe vendasit. Flasim Shqip." },
                 mk: { name: "Авто Механичар Про Скопје", location: "Скопје", desc: "24/7 итна поправка на возила за туристи. Зборуваме англиски и германски." }
             },
             {
-                phone: "+389 75 444 333",
-                tags: "mjeshter telefoni service repair сервис мобилни",
+                phone: "+38975444333",
+                phoneDisplay: "+389 75 444 333",
+                mapUrl: "https://maps.google.com/?q=City+Mall+Skopje",
+                tags: "mjeshter telefoni service repair сервис mobilni",
                 en: { name: "SmartFix Phone Service", location: "Skopje", desc: "Express screen and battery repair for all premium smartphones." },
                 sq: { name: "Servis Telefonash SmartFix", location: "Shkup", desc: "Riparim i shpejtë dhe i garantuar i ekranit dhe baterisë për smartfonë." },
                 mk: { name: "Сервис за Мобилни SmartFix", location: "Скопје", desc: "Брза и квалитетна поправка на екрани и батерии за сите смартфони." }
@@ -428,7 +451,6 @@
             }
 
             list.forEach(biz => {
-                // Nëse gjuha e zgjedhur nuk ekziston ende te ky biznes, përdor Anglisht (en) si standard fallback
                 const data = biz[currentLang] || biz['en']; 
 
                 box.innerHTML += `
@@ -436,10 +458,15 @@
                         <div class="biz-name">${data.name}</div>
                         <p class="biz-desc">${data.desc}</p>
                         
-                        <!-- LOKACIONI MAJTAS | TELEFONI DJATHAS ANASH -->
                         <div class="biz-footer">
-                            <span class="biz-loc">📍 ${data.location}</span>
-                            <span class="biz-phone">📞 ${biz.phone}</span>
+                            <!-- Vegëza për hapjen e lokacionit direkt në Google Maps -->
+                            <a href="${biz.mapUrl}" target="_blank" class="biz-loc-link" title="Open in Google Maps">
+                                <span class="biz-loc">📍 ${data.location}</span>
+                            </a>
+                            <!-- Vegëza 'tel:' për thirrje të menjëhershme nga celulari -->
+                            <a href="tel:${biz.phone}" class="biz-phone-link">
+                                <span class="biz-phone">📞 ${biz.phoneDisplay}</span>
+                            </a>
                         </div>
                     </div>
                 `;
