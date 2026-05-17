@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>MkdMap - Global Luxury Directory</title>
-    <!-- Fusim fontin Montserrat për stil luksoz -->
-    <link href="https://fonts.googleapis.com/css2=family=Montserrat:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <title>MkdMap - Mobile Luxury Directory</title>
+    <!-- Fonti luksoz Montserrat -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     <style>
-        /* --- 1. STILI PËR EKRANIN HYRËS (SPLASH SCREEN) --- */
+        /* --- 1. SPLASH SCREEN PËR TELEFON --- */
         #splash-screen {
             position: fixed;
             top: 0;
@@ -20,7 +20,7 @@
             align-items: center;
             z-index: 9999;
             opacity: 1;
-            transition: opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+            transition: opacity 0.5s ease-out;
             padding: 20px;
             box-sizing: border-box;
         }
@@ -28,23 +28,27 @@
         .splash-text {
             color: #ffffff;
             font-family: 'Montserrat', sans-serif;
-            font-size: 2.5rem;
+            font-size: 1.8rem;
             font-weight: 300;
             text-transform: uppercase;
             text-align: center;
-            letter-spacing: -5px;
+            letter-spacing: -3px;
             opacity: 0;
-            animation: textSpreadIn 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+            animation: textSpreadMobile 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
         }
 
-        @keyframes textSpreadIn {
+        @keyframes textSpreadMobile {
             to { 
                 opacity: 1; 
-                letter-spacing: 6px;
+                letter-spacing: 4px;
             }
         }
 
-        /* --- 2. STILI I RI UNIK I HOME PAGE --- */
+        /* --- 2. DIZAJNI GLOBAL I LOKALIZUAR PËR CELULAR --- */
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             margin: 0;
             padding: 0;
@@ -53,6 +57,7 @@
             color: #f8fafc;
             overflow-x: hidden;
             min-height: 100vh;
+            -webkit-tap-highlight-color: transparent; /* Heq hijen blu kur klikon në telefon */
         }
 
         #main-content {
@@ -60,103 +65,79 @@
         }
 
         .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 40px 20px;
+            width: 100%;
+            padding: 25px 16px;
             text-align: center;
         }
 
-        /* --- TITULLI ULTRA LUXURY --- */
+        /* --- TITULLI NË CELULAR --- */
         header {
-            margin-top: 10px;
-            margin-bottom: 25px;
-            opacity: 0;
-            transform: translateY(-20px);
-            animation: titleLuxuryIn 1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+            margin-top: 5px;
+            margin-bottom: 20px;
         }
 
         .main-title {
             margin: 0;
-            font-size: 3.5rem;
+            font-size: 2.2rem;
             font-weight: 900;
-            letter-spacing: 16px;
+            letter-spacing: 10px;
             text-transform: uppercase;
             background: linear-gradient(135deg, #fff 30%, #d4af37 70%, #aa7c11 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0px 4px 15px rgba(212, 175, 55, 0.2));
         }
 
-        @keyframes titleLuxuryIn {
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* --- SELEKTORI MODERN I GJUHËVE (50 GJUHË) --- */
+        /* --- SELEKTORI I GJUHËVE (I MADH PËR GISHTIN) --- */
         .lang-container {
-            margin-bottom: 40px;
+            margin-bottom: 25px;
         }
 
         .lang-select {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            color: #cbd5e1;
-            padding: 12px 24px;
-            border-radius: 30px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            color: #ffffff;
+            padding: 14px;
+            border-radius: 15px;
             font-family: inherit;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
             outline: none;
-            transition: all 0.4s ease;
             backdrop-filter: blur(10px);
-            max-width: 100%;
+            appearance: none; /* Heq stilin e vjetër të shigjetës së telefonit */
+            -webkit-appearance: none;
+            text-align: center;
         }
 
-        .lang-select:hover, .lang-select:focus {
-            border-color: #d4af37;
-            background: rgba(212, 175, 55, 0.08);
-            color: #ffffff;
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.1);
+        /* --- KUTIA E KËRKIMIT VERTIKALE PËR TELEFON --- */
+        .search-container {
+            margin-bottom: 35px;
         }
 
-        .lang-select option {
-            background-color: #090d16;
-            color: #ffffff;
-        }
-
-        /* --- KUTIA E KËRKIMIT DIZAJN MINIMALIST --- */
         .search-box {
             display: flex;
+            flex-direction: column;
             background: rgba(255, 255, 255, 0.02);
             border: 1px solid rgba(255, 255, 255, 0.08);
             backdrop-filter: blur(20px);
-            border-radius: 100px;
-            padding: 6px 6px 6px 25px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-            margin-bottom: 50px;
-            max-width: 650px;
-            margin-left: auto;
-            margin-right: auto;
-            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-            align-items: center;
-        }
-
-        .search-box:focus-within {
-            border-color: rgba(212, 175, 55, 0.5);
-            background: rgba(255, 255, 255, 0.04);
-            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.05), 0 0 30px rgba(212, 175, 55, 0.05);
+            border-radius: 20px;
+            padding: 12px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            gap: 12px;
         }
 
         .search-box input {
-            flex: 1;
+            width: 100%;
             background: none;
             border: none;
             outline: none;
             color: #ffffff;
-            font-size: 1.05rem;
+            font-size: 1rem;
             font-family: inherit;
             letter-spacing: 0.5px;
-            padding: 10px 0;
+            padding: 10px 5px;
+            text-align: center;
         }
 
         .search-box input::placeholder {
@@ -164,184 +145,122 @@
         }
 
         .search-box button {
+            width: 100%;
             background: #ffffff;
             border: none;
             color: #050811;
             font-weight: 700;
-            padding: 14px 35px;
-            border-radius: 100px;
-            cursor: pointer;
+            padding: 15px;
+            border-radius: 15px;
             text-transform: uppercase;
             letter-spacing: 1.5px;
-            font-size: 0.85rem;
-            transition: all 0.3s ease;
-            white-space: nowrap;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
         }
 
-        .search-box button:hover {
+        .search-box button:active {
             background: linear-gradient(135deg, #d4af37, #aa7c11);
             color: #ffffff;
-            transform: scale(1.02);
         }
 
-        /* --- ANIMACIONI I PLLAKATAVE --- */
+        /* --- LISTA E BIZNESEVE E PASTER VERTIKALE --- */
         .results-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-            gap: 30px;
-            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
 
         .business-card {
-            background: rgba(255, 255, 255, 0.01);
-            border: 1px solid rgba(255, 255, 255, 0.04);
-            padding: 30px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 22px;
             border-radius: 20px;
             text-align: left;
             position: relative;
-            overflow: hidden;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), 
-                        background 0.4s ease, 
-                        border-color 0.4s ease, 
-                        box-shadow 0.4s ease;
-        }
-
-        .business-card:hover {
-            transform: translateY(-8px);
-            background: rgba(255, 255, 255, 0.03);
-            border-color: rgba(212, 175, 55, 0.3);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 25px rgba(212, 175, 55, 0.05);
-        }
-
-        .business-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, #d4af37, #aa7c11);
-            transform: scaleX(0);
-            transition: transform 0.4s ease;
-        }
-        .business-card:hover::before {
-            transform: scaleX(1);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         }
 
         .biz-name {
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             font-weight: 700;
             color: #ffffff;
-            margin: 0 0 12px 0;
+            margin: 0 0 10px 0;
             letter-spacing: 0.5px;
         }
 
         .biz-desc {
             color: #94a3b8;
-            font-size: 0.95rem;
-            margin: 0 0 25px 0;
-            line-height: 1.6;
+            font-size: 0.9rem;
+            margin: 0 0 22px 0;
+            line-height: 1.5;
             font-weight: 300;
         }
 
-        /* --- FOOTER-I I KARTELËS --- */
+        /* --- FOOTER-I I KARTELËS ME BUTONA TË MËDHENJ PËR GISHTIN --- */
         .biz-footer {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
             padding-top: 15px;
-            margin-top: auto;
-            font-size: 0.85rem;
             gap: 10px;
         }
 
         .biz-loc-link, .biz-phone-link {
             text-decoration: none;
-            display: inline-block;
-            transition: all 0.3s ease;
+            flex: 1; /* Secili buton merr gjysmën e ekranit në mënyrë të barabartë */
+            display: block;
         }
 
         .biz-loc {
             color: #d4af37;
             font-weight: 600;
+            font-size: 0.85rem;
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 6px;
-            letter-spacing: 0.5px;
-        }
-        
-        .biz-loc-link:hover .biz-loc {
-            color: #ffffff;
-            text-shadow: 0 0 10px rgba(212, 175, 55, 0.6);
+            background: rgba(212, 175, 55, 0.05);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            padding: 12px 5px;
+            border-radius: 12px;
+            text-align: center;
         }
 
         .biz-phone {
-            color: #cbd5e1;
-            font-weight: 400;
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 0.85rem;
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 6px;
-            background: rgba(255, 255, 255, 0.04);
-            padding: 6px 14px;
-            border-radius: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.02);
-            white-space: nowrap;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 12px 5px;
+            border-radius: 12px;
+            text-align: center;
         }
 
-        .biz-phone-link:hover .biz-phone {
-            background: rgba(212, 175, 55, 0.15);
-            color: #ffffff;
+        /* Ndryshimi i ngjyrës kur përdoruesi e prek butonin me gisht */
+        .biz-loc-link:active .biz-loc {
+            background: rgba(212, 175, 55, 0.2);
             border-color: #d4af37;
+        }
+
+        .biz-phone-link:active .biz-phone {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: #ffffff;
         }
 
         .no-results {
             color: #64748b;
             font-style: italic;
-            margin-top: 30px;
-            grid-column: 1 / -1;
-        }
-
-        /* --- PËRSHTATJA INTELIGJENTE DHE E QARTË PËR CELULARË --- */
-        @media (max-width: 480px) {
-            .container { padding: 25px 15px; }
-            .splash-text { font-size: 1.8rem; }
-            .main-title { font-size: 2.2rem; letter-spacing: 10px; }
-            
-            /* Kutia e kërkimit kthehet në strukturë vertikale që të mos ngjeshet */
-            .search-box { 
-                flex-direction: column; 
-                border-radius: 20px; 
-                padding: 15px; 
-                margin-bottom: 35px;
-                gap: 12px;
-            }
-            .search-box input { 
-                width: 100%; 
-                text-align: center; 
-                font-size: 1rem;
-                padding: 5px 0;
-            }
-            .search-box button { 
-                width: 100%; 
-                padding: 14px; 
-                font-size: 0.9rem; 
-            }
-            
-            .results-container { grid-template-columns: 1fr; gap: 20px; }
-            .business-card { padding: 22px; }
-            
-            /* Footer-i i biznesit rregullohet që butonat të jenë të pastër dhe të mos dalin jashtë kutisë */
-            .biz-footer { 
-                flex-direction: row; 
-                justify-content: space-between;
-                font-size: 0.8rem; 
-                padding-top: 12px;
-            }
-            .biz-phone { padding: 6px 10px; }
+            margin-top: 20px;
+            font-size: 0.95rem;
         }
     </style>
 </head>
@@ -352,76 +271,78 @@
         <div class="splash-text">Welcome to Macedonia</div>
     </div>
 
-    <!-- 2. HOME PAGE UNIQUE DESIGN -->
+    <!-- 2. MAIN CONTENT (CELULAR) -->
     <div id="main-content">
         <div class="container">
             <header>
                 <h1 class="main-title">mkdmap</h1>
             </header>
 
-            <!-- SELEKTORI ME GJUHË -->
+            <!-- SELEKTORI I GJUHËVE -->
             <div class="lang-container">
                 <select class="lang-select" id="language-picker" onchange="changeLanguage()">
-                    <option value="en"> English (EN)</option>
-                    <option value="sq"> Shqip (SQ)</option>
-                    <option value="mk"> Maqedonisht (MK)</option>
-                    <option value="sr"> Srpski (SR)</option>
-                    <option value="tr"> Türkçe (TR)</option>
-                    <option value="de"> Deutsch (DE)</option>
-                    <option value="ru"> Русский (RU)</option>
-                    <option value="fr"> Français (FR)</option>
-                    <option value="it"> Italiano (IT)</option>
-                    <option value="es"> Español (ES)</option>
-                    <option value="el"> Ελληνικά (EL)</option>
-                    <option value="bg"> Български (BG)</option>
-                    <option value="ro"> Română (RO)</option>
-                    <option value="pl"> Polski (PL)</option>
-                    <option value="nl"> Nederlands (NL)</option>
-                    <option value="pt"> Português (PT)</option>
-                    <option value="sv"> Svenska (SV)</option>
-                    <option value="no"> Norsk (NO)</option>
-                    <option value="da"> Dansk (DA)</option>
-                    <option value="fi"> Suomi (FI)</option>
-                    <option value="cs"> Čeština (CS)</option>
-                    <option value="hu"> Magyar (HU)</option>
-                    <option value="uk"> Українська (UK)</option>
-                    <option value="hr"> Hrvatski (HR)</option>
-                    <option value="bs"> Bosanski (BS)</option>
-                    <option value="sl"> Slovenščina (SL)</option>
-                    <option value="sk"> Slovenčina (SK)</option>
-                    <option value="lt"> Lietuvių (LT)</option>
-                    <option value="lv"> Latviešu (LV)</option>
-                    <option value="et"> Eesti (ET)</option>
-                    <option value="zh"> 中文 (ZH)</option>
-                    <option value="ja"> 日本語 (JA)</option>
-                    <option value="ko"> 한국어 (KO)</option>
-                    <option value="ar"> العربية (AR)</option>
-                    <option value="he"> עברית (HE)</option>
-                    <option value="hi"> हिन्दी (HI)</option>
-                    <option value="id"> Bahasa Indonesia (ID)</option>
-                    <option value="ms"> Bahasa Melayu (MS)</option>
-                    <option value="th"> ไทย (TH)</option>
-                    <option value="vi"> Tiếng Việt (VI)</option>
-                    <option value="fa"> فارسی (FA)</option>
-                    <option value="ur"> اردو (UR)</option>
-                    <option value="bn"> বাংলা (BN)</option>
-                    <option value="pa"> ਪੰਜਾਬੀ (PA)</option>
-                    <option value="ka"> ქართული (KA)</option>
-                    <option value="hy"> Հայերեն (HY)</option>
-                    <option value="az"> Azərbaycanca (AZ)</option>
-                    <option value="sq_AL"> Shqip Kosovë (SQ-KS)</option>
-                    <option value="la"> Latina (LA)</option>
-                    <option value="af"> Afrikaans (AF)</option>
+                    <option value="en">🌐 English (EN)</option>
+                    <option value="sq">🌐 Shqip (SQ)</option>
+                    <option value="mk">🌐 Maqedonisht (MK)</option>
+                    <option value="sr">🌐 Srpski (SR)</option>
+                    <option value="tr">🌐 Türkçe (TR)</option>
+                    <option value="de">🌐 Deutsch (DE)</option>
+                    <option value="ru">🌐 Русский (RU)</option>
+                    <option value="fr">🌐 Français (FR)</option>
+                    <option value="it">🌐 Italiano (IT)</option>
+                    <option value="es">🌐 Español (ES)</option>
+                    <option value="el">🌐 Ελληνικά (EL)</option>
+                    <option value="bg">🌐 Български (BG)</option>
+                    <option value="ro">🌐 Română (RO)</option>
+                    <option value="pl">🌐 Polski (PL)</option>
+                    <option value="nl">🌐 Nederlands (NL)</option>
+                    <option value="pt">🌐 Português (PT)</option>
+                    <option value="sv">🌐 Svenska (SV)</option>
+                    <option value="no">🌐 Norsk (NO)</option>
+                    <option value="da">🌐 Dansk (DA)</option>
+                    <option value="fi">🌐 Suomi (FI)</option>
+                    <option value="cs">🌐 Čeština (CS)</option>
+                    <option value="hu">🌐 Magyar (HU)</option>
+                    <option value="uk">🌐 Українська (UK)</option>
+                    <option value="hr">🌐 Hrvatski (HR)</option>
+                    <option value="bs">🌐 Bosanski (BS)</option>
+                    <option value="sl">🌐 Slovenščina (SL)</option>
+                    <option value="sk">🌐 Slovenčina (SK)</option>
+                    <option value="lt">🌐 Lietuvių (LT)</option>
+                    <option value="lv">🌐 Latviešu (LV)</option>
+                    <option value="et">🌐 Eesti (ET)</option>
+                    <option value="zh">🌐 中文 (ZH)</option>
+                    <option value="ja">🌐 日本語 (JA)</option>
+                    <option value="ko">🌐 한국어 (KO)</option>
+                    <option value="ar">🌐 العربية (AR)</option>
+                    <option value="he">🌐 עברית (HE)</option>
+                    <option value="hi">🌐 हिन्दी (HI)</option>
+                    <option value="id">🌐 Bahasa Indonesia (ID)</option>
+                    <option value="ms">🌐 Bahasa Melayu (MS)</option>
+                    <option value="th">🌐 ไทย (TH)</option>
+                    <option value="vi">🌐 Tiếng Việt (VI)</option>
+                    <option value="fa">🌐 فارسی (FA)</option>
+                    <option value="ur">🌐 اردو (UR)</option>
+                    <option value="bn">🌐 বাংলা (BN)</option>
+                    <option value="pa">🌐 ਪੰਜਾਬи (PA)</option>
+                    <option value="ka">🌐 ქართული (KA)</option>
+                    <option value="hy">🌐 Հայերեն (HY)</option>
+                    <option value="az">🌐 Azərbaycanca (AZ)</option>
+                    <option value="sq_AL">🌐 Shqip Kosovë (SQ-KS)</option>
+                    <option value="la">🌐 Latina (LA)</option>
+                    <option value="af">🌐 Afrikaans (AF)</option>
                 </select>
             </div>
 
             <!-- KUTIA E KËRKIMIT -->
-            <div class="search-box">
-                <input type="text" id="search-input" placeholder="What are you looking for? (e.g., mechanic, hotel, villa)...">
-                <button id="search-btn" onclick="searchBusinesses()">Search</button>
+            <div class="search-container">
+                <div class="search-box">
+                    <input type="text" id="search-input" placeholder="What are you looking for? (e.g., mechanic, hotel)...">
+                    <button id="search-btn" onclick="searchBusinesses()">Search</button>
+                </div>
             </div>
 
-            <!-- ZONA E REZULTATEVE -->
+            <!-- REZULTATET VERTIKALE -->
             <div class="results-container" id="results-box">
                 <!-- Mbushet dinamikisht nga JS -->
             </div>
@@ -434,6 +355,7 @@
         window.addEventListener("DOMContentLoaded", function() {
             showBusinesses(businesses);
 
+            // Shfaqja e brendit pas ekranit hyrës
             setTimeout(function() {
                 var splash = document.getElementById("splash-screen");
                 var mainContent = document.getElementById("main-content");
@@ -443,11 +365,11 @@
                 
                 setTimeout(function() {
                     splash.style.display = "none";
-                }, 600); 
+                }, 500); 
             }, 2500);
         });
 
-        // DATABASE ME PËRKTHIME DHE LOKACIONE
+        // DATABAZA E BIZNESEVE
         const businesses = [
             {
                 phone: "+38970123456",
@@ -465,7 +387,7 @@
                 tags: "mechanik mekanik service auto авто механичар",
                 en: { name: "Skopje Auto Mechanic Pro", location: "Skopje", desc: "24/7 emergency car repair for tourists. English speaking support." },
                 sq: { name: "Mekanik Auto Pro Shkup", location: "Shkup", desc: "Riparim urgjent i makinave 24/7 për turistët dhe vendasit. Flasim Shqip." },
-                mk: { name: "Авто Механичар Про Скопје", location: "Скопје", desc: "24/7 итна поправка на возила за朼уристи. Зборуваме англиски и германски." }
+                mk: { name: "Авто Механичар Про Скопје", location: "Скопје", desc: "24/7 итна поправка на возила за туристи. Зборуваме англиски." }
             },
             {
                 phone: "+38975444333",
@@ -495,17 +417,15 @@
 
                 box.innerHTML += `
                     <div class="business-card">
-                        <div>
-                            <div class="biz-name">${data.name}</div>
-                            <p class="biz-desc">${data.desc}</p>
-                        </div>
+                        <div class="biz-name">${data.name}</div>
+                        <p class="biz-desc">${data.desc}</p>
                         
                         <div class="biz-footer">
-                            <a href="${biz.mapUrl}" target="_blank" class="biz-loc-link" title="Open in Google Maps">
+                            <a href="${biz.mapUrl}" target="_blank" class="biz-loc-link">
                                 <span class="biz-loc">📍 ${data.location}</span>
                             </a>
                             <a href="tel:${biz.phone}" class="biz-phone-link">
-                                <span class="biz-phone">📞 ${biz.phoneDisplay}</span>
+                                <span class="biz-phone">📞 Call Now</span>
                             </a>
                         </div>
                     </div>
@@ -519,22 +439,22 @@
             const btn = document.getElementById("search-btn");
             
             if(currentLang === "sq" || currentLang === "sq_AL") {
-                input.placeholder = "Çfarë po kërkoni? (psh., mekanik, vilë, servis)...";
+                input.placeholder = "Çfarë po kërkoni? (psh., mekanik, vilë)...";
                 btn.innerText = "Kërko";
             } else if(currentLang === "mk") {
-                input.placeholder = "Што барате? (на пр. механичар, вила, сервис)...";
+                input.placeholder = "Што барате? (на пр. механичар, вила)...";
                 btn.innerText = "Пребарај";
             } else if(currentLang === "sr") {
-                input.placeholder = "Šta tražite? (npr. mehaničar, vila, kafić)...";
+                input.placeholder = "Šta tražite? (npr. mehaničar, vila)...";
                 btn.innerText = "Traži";
             } else if(currentLang === "tr") {
-                input.placeholder = "Ne arıyorsunuz? (örn. tamirci, villa, otel)...";
+                input.placeholder = "Ne arıyorsunuz? (örn. tamirci, villa)...";
                 btn.innerText = "Ara";
             } else if(currentLang === "de") {
                 input.placeholder = "Was suchen Sie? (z.B. Mechaniker, Villa)...";
                 btn.innerText = "Suche";
             } else {
-                input.placeholder = "What are you looking for? (e.g., mechanic, villa, cafe)...";
+                input.placeholder = "What are you looking for? (e.g., mechanic, villa)...";
                 btn.innerText = "Search";
             }
 
