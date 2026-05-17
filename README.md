@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>MkdMap - Ultra Luxury Directory</title>
     <style>
         /* --- 1. STILI PËR EKRANIN HYRËS (SPLASH SCREEN) --- */
@@ -12,13 +12,13 @@
             left: 0;
             width: 100%;
             height: 100vh;
-            background-color: #090d16; /* Sfondi i zi/errët luksoz */
+            background-color: #090d16; /* Sfondi i zi mbretëror */
             display: flex;
             justify-content: center;
             align-items: center;
             z-index: 9999;
             opacity: 1;
-            transition: opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+            transition: opacity 0.5s ease;
         }
 
         .splash-text {
@@ -46,9 +46,11 @@
             font-family: 'Montserrat', sans-serif, system-ui;
             color: #ffffff;
             overflow-x: hidden;
-            
-            /* E bllokojmë scroll-in që në fillim që përdoruesi mos të lëvizë gishtin poshtë */
-            overflow-y: hidden; 
+        }
+
+        /* FIX-I KRYESOR: E fshehim të gjithë përmbajtjen në fillim që mos të bëhet scroll */
+        #main-content {
+            display: none; 
         }
 
         .container {
@@ -64,8 +66,7 @@
             margin-bottom: 50px;
             opacity: 0;
             transform: scale(0.95);
-            animation: titleLuxuryIn 1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-            animation-delay: 2.2s; 
+            animation: titleLuxuryIn 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
         }
 
         .main-title {
@@ -187,45 +188,51 @@
 </head>
 <body>
 
-    <!-- 1. SPLASH SCREEN -->
+    <!-- 1. SPLASH SCREEN (Ekrani i zi) -->
     <div id="splash-screen">
         <div class="splash-text">Welcome to Macedonia</div>
     </div>
 
-    <!-- 2. FAQJA KRYESORE LUXURY -->
-    <div class="container">
-        <header>
-            <h1 class="main-title">mkdmap</h1>
-        </header>
+    <!-- 2. FAQJA KRYESORE LUXURY (E mbështjellë me ID-në e re 'main-content') -->
+    <div id="main-content">
+        <div class="container">
+            <header>
+                <h1 class="main-title">mkdmap</h1>
+            </header>
 
-        <!-- KUTIA E KËRKIMIT -->
-        <div class="search-box">
-            <input type="text" id="search-input" placeholder="What are you looking for? (e.g., mechanic, hotel, cafe)...">
-            <button onclick="searchBusinesses()">Search</button>
-        </div>
+            <!-- KUTIA E KËRKIMIT -->
+            <div class="search-box">
+                <input type="text" id="search-input" placeholder="What are you looking for? (e.g., mechanic, hotel, cafe)...">
+                <button onclick="searchBusinesses()">Search</button>
+            </div>
 
-        <!-- VENDI KU SHFAQEN REZULTATET -->
-        <div class="results-container" id="results-box">
-            <!-- Do të mbushen nga JS -->
+            <!-- VENDI KU SHFAQEN REZULTATET -->
+            <div class="results-container" id="results-box">
+                <!-- Do të mbushen nga JS -->
+            </div>
         </div>
     </div>
 
     <script>
         window.addEventListener("DOMContentLoaded", function() {
+            // Ngarkojmë bizneset në sfond iher
+            showBusinesses(businesses);
+
             setTimeout(function() {
                 var splash = document.getElementById("splash-screen");
+                var mainContent = document.getElementById("main-content");
+                
+                // 1. Zbehim ekranin e zi
                 splash.style.opacity = "0";
                 
+                // 2. Shfaqim faqen kryesore fiks në momentin që nis zbehja
+                mainContent.style.display = "block";
+                
                 setTimeout(function() {
+                    // 3. E heqim fare splash-screen nga kodi që mos të bëjë pengesë
                     splash.style.display = "none";
-                    
-                    /* --- FIX-I IM: Sapo ikën ekrani i zi, lejojmë scroll-in përsëri --- */
-                    document.body.style.overflowY = "auto";
-                    
-                }, 600); 
-            }, 2000);
-            
-            showBusinesses(businesses);
+                }, 500); 
+            }, 2000); // 2 sekonda kohëzgjatja ekzaktësisht
         });
 
         const businesses = [
