@@ -12,7 +12,7 @@
             left: 0;
             width: 100%;
             height: 100vh;
-            background-color: #090d16; /* Edhe më i errët për kontrast */
+            background-color: #090d16; /* Sfondi i zi/errët luksoz */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -42,11 +42,13 @@
         body {
             margin: 0;
             padding: 0;
-            /* Sfondi i kaltër i mbyllur luksoz (65% errësirë e thellë) */
-            background-color: #0f1a2c; 
+            background-color: #0f1a2c; /* Sfondi i kaltër i mbyllur luksoz */
             font-family: 'Montserrat', sans-serif, system-ui;
             color: #ffffff;
             overflow-x: hidden;
+            
+            /* E bllokojmë scroll-in që në fillim që përdoruesi mos të lëvizë gishtin poshtë */
+            overflow-y: hidden; 
         }
 
         .container {
@@ -62,7 +64,6 @@
             margin-bottom: 50px;
             opacity: 0;
             transform: scale(0.95);
-            /* Animacioni që fillon pasi mbaron splash screen */
             animation: titleLuxuryIn 1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
             animation-delay: 2.2s; 
         }
@@ -71,9 +72,7 @@
             margin: 0;
             font-size: 2.5rem;
             font-weight: 900;
-            letter-spacing: 12px; /* Shkronja të ndara për stil luksoz */
-            text-transform: uppercase;
-            /* Gradient Ari i Pastër */
+            letter-spacing: 12px;
             background: linear-gradient(135deg, #f3caf6 0%, #d4af37 50%, #aa7c11 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -88,7 +87,7 @@
         .search-box {
             display: flex;
             background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(212, 175, 55, 0.3); /* Kornizë e lehtë ari */
+            border: 1px solid rgba(212, 175, 55, 0.3);
             backdrop-filter: blur(10px);
             border-radius: 50px;
             padding: 6px 6px 6px 20px;
@@ -133,7 +132,7 @@
             transform: scale(1.05);
         }
 
-        /* --- STRUKTURA E REZULTATEVE TË KËRKIMIT --- */
+        /* --- REZULTATET --- */
         .results-container {
             display: grid;
             grid-template-columns: 1fr;
@@ -143,7 +142,7 @@
 
         .business-card {
             background: rgba(255, 255, 255, 0.03);
-            border-left: 4px solid #d4af37; /* Vijë ari anash */
+            border-left: 4px solid #d4af37;
             border-top: 1px solid rgba(255,255,255,0.05);
             border-bottom: 1px solid rgba(255,255,255,0.05);
             border-right: 1px solid rgba(255,255,255,0.05);
@@ -207,27 +206,28 @@
 
         <!-- VENDI KU SHFAQEN REZULTATET -->
         <div class="results-container" id="results-box">
-            <!-- Bizneset do të gjirohen këtu automatikisht nga JavaScript -->
+            <!-- Do të mbushen nga JS -->
         </div>
     </div>
 
-    <!-- 3. SCRIPTET (ANIMACIONI & DATABASE I BIZNESEVE) -->
     <script>
-        // Animacioni i zhdukjes së Splash Screen pas 2 sekondave
         window.addEventListener("DOMContentLoaded", function() {
             setTimeout(function() {
                 var splash = document.getElementById("splash-screen");
                 splash.style.opacity = "0";
+                
                 setTimeout(function() {
                     splash.style.display = "none";
+                    
+                    /* --- FIX-I IM: Sapo ikën ekrani i zi, lejojmë scroll-in përsëri --- */
+                    document.body.style.overflowY = "auto";
+                    
                 }, 600); 
             }, 2000);
             
-            // Shfaqim të gjitha bizneset në fillim automatikisht
             showBusinesses(businesses);
         });
 
-        // "DATABASE" I TESTIMIT (Këtu mund të shtosh sa të duash më vonë)
         const businesses = [
             { name: "Luxury Villa Mavrovo", category: "villa hotel", phone: "+389 70 123 456", location: "Mavrovo", description: "Exclusive villa with mountain view and private pool." },
             { name: "Skopje Auto Mechanic Pro", category: "mechanik mekanik service", phone: "+389 71 999 888", location: "Skopje (Shkup)", description: "24/7 emergency car repair for tourists. English speaking." },
@@ -237,16 +237,13 @@
             { name: "Oasis Luxury Pool & Spa", category: "pishina pool", phone: "+389 70 888 888", location: "Kumanovo", description: "An elite swimming pool resort for summer relaxation." }
         ];
 
-        // Funksioni që i vizaton bizneset në ekran
         function showBusinesses(list) {
             const box = document.getElementById("results-box");
-            box.innerHTML = ""; // e pastrojmë kutinë iher
-
+            box.innerHTML = "";
             if(list.length === 0) {
                 box.innerHTML = "<p class='no-results'>No premium businesses found matching your request. Try searching 'mechanic' or 'hotel'.</p>";
                 return;
             }
-
             list.forEach(biz => {
                 box.innerHTML += `
                     <div class="business-card">
@@ -259,27 +256,21 @@
             });
         }
 
-        // Funksioni i kërkimit inteligjent
         function searchBusinesses() {
             const query = document.getElementById("search-input").value.toLowerCase().trim();
-            
             if(query === "") {
-                showBusinesses(businesses); // Nëse është zbrazët kërkimi, shfaqi të gjitha
+                showBusinesses(businesses);
                 return;
             }
-
-            // Filtrojmë bizneset në bazë të asaj që shkruan turisti
             const filtered = businesses.filter(biz => {
                 return biz.name.toLowerCase().includes(query) || 
                        biz.category.toLowerCase().includes(query) || 
                        biz.location.toLowerCase().includes(query) ||
                        biz.description.toLowerCase().includes(query);
             });
-
             showBusinesses(filtered);
         }
 
-        // Mundësojmë që kërkimi të bëhet edhe duke shtypur butonin "Enter" në tastierë
         document.getElementById("search-input").addEventListener("keypress", function(event) {
             if (event.key === "Enter") {
                 searchBusinesses();
