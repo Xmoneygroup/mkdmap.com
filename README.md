@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="sq">
 <head>
 <meta charset="UTF-8"/>
@@ -922,7 +923,7 @@ document.addEventListener('click',e=>{if(lO&&!e.target.closest('.lw')){lO=false;
 /* CATEGORIES */
 function bC(f=''){
   const list=f?CATS.filter(c=>cn(c.k).toLowerCase().includes(f.toLowerCase())):CATS;
-  document.getElementById('cGrid').innerHTML=list.map(c=>`<a class="ct" href="javascript:void(0)" onclick="oM('${c.k}','${c.i}')"><span class="cti">${c.i}</span><span class="ctn">${cn(c.k)}</span><span class="cts">Coming Soon</span></a>`).join('');
+  document.getElementById('cGrid').innerHTML=list.map(c=>`<a class="ct" href="#" onclick="oM('${c.k}','${c.i}');return false;"><span class="cti">${c.i}</span><span class="ctn">${cn(c.k)}</span><span class="cts">Coming Soon</span></a>`).join('');
 }
 function fC(){bC(document.getElementById('cSr').value)}
 
