@@ -63,7 +63,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:300;padding:1.1rem 3rem;display:
 /* Base letters */
 .logo-hero{
   font-family:'Sora',sans-serif;font-weight:800;
-  font-size:clamp(4.5rem,12vw,11rem);
+  font-size:clamp(2.8rem,7vw,6.5rem);
   letter-spacing:.14em;line-height:1;
   text-transform:uppercase;
   position:relative;display:inline-block;
@@ -233,7 +233,7 @@ footer{position:relative;z-index:2;background:rgba(0,0,3,.97);border-top:1px sol
 /* RESPONSIVE */
 @media(max-width:1100px){.cat-grid{grid-template-columns:repeat(4,1fr)}.offers-grid{grid-template-columns:1fr 1fr}.steps{grid-template-columns:1fr}}
 @media(max-width:768px){nav{padding:1rem 1.25rem}.nav-links .nav-a{display:none}.cat-grid{grid-template-columns:repeat(3,1fr)}.offers-grid,.steps{grid-template-columns:1fr}.how-sec,.cat-sec,.offers-sec,.cta-sec{padding:5rem 1.5rem}.stats-strip{flex-wrap:wrap}.stat-i{min-width:50%;padding:1.5rem}.ft-top{grid-template-columns:1fr;gap:2rem}}
-@media(max-width:480px){.cat-grid{grid-template-columns:repeat(2,1fr)}.logo-hero{font-size:3.8rem}}
+@media(max-width:480px){.cat-grid{grid-template-columns:repeat(2,1fr)}.logo-hero{font-size:2.4rem}}
 </style>
 </head>
 <body>
